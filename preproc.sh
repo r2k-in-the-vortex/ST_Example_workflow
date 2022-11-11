@@ -1,4 +1,7 @@
 mkdir -p build
-d=" -I src/"
-d+=" -I src/SomeThird"
-gpp src/Config0.ST $d -o build/result.ST
+inc=""
+for dirname in $(ls -R src/ | grep src/ | grep -o -E '[^:]*')
+do
+inc+=" -I $dirname"
+done
+gpp src/Config0.ST $inc -o build/result.ST
