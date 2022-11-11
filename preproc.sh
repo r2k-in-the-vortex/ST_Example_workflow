@@ -1,2 +1,4 @@
 mkdir -p build
-gpp src/Config0.ST -I src/ -o build/result.ST
+d="-I src/ "
+d+="-I src/SomeThird "
+gpp src/Config0.ST $d -o build/result.ST
