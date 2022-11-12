@@ -9,7 +9,7 @@ FUNCTION_BLOCK FB_Test3
     out2 : BOOL;
   END_VAR
 
-  out := in;
+  out2 := in2;
 END_FUNCTION_BLOCK
 
 #endif
