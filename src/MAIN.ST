@@ -26,6 +26,8 @@ PROGRAM MAIN
     Slave2_Channel_6 AT %IX17.0 : BOOL; (* EL1018 8K. Dig. Eingang 24V, 10�s *)
     Slave2_Channel_7 AT %IX18.0 : BOOL; (* EL1018 8K. Dig. Eingang 24V, 10�s *)
     Slave2_Channel_8 AT %IX19.0 : BOOL; (* EL1018 8K. Dig. Eingang 24V, 10�s *)
+  END_VAR
+  VAR
     Slave0_Channel_5 AT %QX0.0 : BOOL; (* EK1814 EtherCAT-EA-Koppler (1A E-Bus, 4 K. Dig. Ein, 3ms, 4 K.  *)
     Slave0_Channel_6 AT %QX1.0 : BOOL; (* EK1814 EtherCAT-EA-Koppler (1A E-Bus, 4 K. Dig. Ein, 3ms, 4 K.  *)
     Slave0_Channel_7 AT %QX2.0 : BOOL; (* EK1814 EtherCAT-EA-Koppler (1A E-Bus, 4 K. Dig. Ein, 3ms, 4 K.  *)
@@ -37,10 +39,28 @@ PROGRAM MAIN
     Slave3_Channel_5 AT %QX8.0 : BOOL; (* EL2008 8K. Dig. Ausgang 24V, 0.5A *)
     Slave3_Channel_6 AT %QX9.0 : BOOL; (* EL2008 8K. Dig. Ausgang 24V, 0.5A *)
     Slave3_Channel_7 AT %QX10.0 : BOOL; (* EL2008 8K. Dig. Ausgang 24V, 0.5A *)
-    Slave3_Channel_8 AT %QX11.0 : BOOL; (* EL2008 8K. Dig. Ausgang 24V, 0.5A *)
+    Slave3_Channel_8 AT %QX11.0 : BOOL; (* EL2008 8K. Dig. Ausgang 24V, 0.5A __IX0_0 *)
   END_VAR
+  VAR
+    tim1 : TON;
+    somebool : BOOL;
+  END_VAR
+  tim1(in := not tim1.Q, pt := T#1S);
+  if tim1.Q then
+    somebool := not somebool;
+  end_if;
+  Slave0_Channel_5 := somebool;
 
-  Slave3_Channel_8 := TRUE;
+  Slave0_Channel_8 := NOT Slave1_Channel_3;
+
+  Slave3_Channel_1 := somebool;
+  Slave3_Channel_2 := not somebool;
+  Slave3_Channel_3 := not somebool;
+  Slave3_Channel_4 := somebool;
+  Slave3_Channel_5 := somebool;
+  Slave3_Channel_6 := not somebool;
+  Slave3_Channel_7 := not somebool;
+  Slave3_Channel_8 := somebool;
 END_PROGRAM
 
 #endif
