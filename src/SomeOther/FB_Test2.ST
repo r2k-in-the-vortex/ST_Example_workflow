@@ -1,5 +1,6 @@
 #ifndef FB_Test2_ST
 #define FB_Test2_ST
+#include "FB_Test3.ST"
 
 FUNCTION_BLOCK FB_Test2
   VAR_INPUT

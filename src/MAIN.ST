@@ -3,6 +3,7 @@
 #include "functionBlock0.ST"
 #include "SomeOther/FB_Test2.ST"
 #include "FB_Test3.ST"
+#include "FB_EcCoeSdoRead.ST"
 
 PROGRAM MAIN
   VAR
@@ -44,7 +45,9 @@ PROGRAM MAIN
   VAR
     tim1 : TON;
     somebool : BOOL;
+    coeRead : FB_EcCoeSdoRead;
   END_VAR
+  coeRead();
   tim1(in := not tim1.Q, pt := T#1S);
   if tim1.Q then
     somebool := not somebool;
